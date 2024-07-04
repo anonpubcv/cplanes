@@ -6,161 +6,188 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+  <link rel="stylesheet" href="css/range.css">
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
 
     <!--<div class="container-lg d-flex justify-content-center align-items-center"></div>-->
-    <div class="container-lg">
-        <div class="container-fluid p-3 bg-secondary text-white text-center">
-            <h2 class="fw-bolder">Dynamic view synthesis of thin structures with short-term movements</h2> 
-            <h2 class="fw-bolder">using Neural Radiance Fields from monocular videos</h2>
+    <div class="container-xl">
+        <div class="container-fluid p-3 bg-light text-white text-center">
+            <h2 class="fw-bolder font-black">Conditional Plane-based Scene Agnostic Representation </h2> 
+            <h2 class="fw-bolder font-black">for Novel View Synthesis</h2>
         </div>
         </br>
         <div class="text-center">
             <h2 class="fw-bold">Abstract</h2> 
         </div>
         <div class="container p-3 bg-light">
-            <p class="text-center">Learning to generate motions of thin structures such as plant leaves in dynamic view synthesis is challenging. This is because thin structures usually undergo small but fast non-rigid motions as they interact with air and wind. When given a set of RGB images or videos of a scene with moving thin structures as input, existing methods that map the scene to its corresponding canonical space for rendering novel views fail as the object movements are too subtle compared to the background. Disentangling the objects with thin parts from the background scene is also challenging when the parts show fast and rapid motions. To address these issues, we propose a Neural Radiance Field (NeRF)-based framework that accurately reconstructs thin structures such as leaves and captures their subtle, fast motions. The framework learns the geometry of a scene by mapping the dynamic images to a canonical scene in which the scene remains static. We propose a ray masking network to further decompose the canonical scene into foreground and background, thus enabling the network to focus more on foreground movements. We conducted experiments using a dataset containing thin structures such as leaves and petals, which include image sequences collected by us and one public image sequence. Experiments show superior results compared to existing methods.</p> 
+            <p class="text-center">Existing explicit and hybrid neural representations for novel view synthesis are scene-specific. In other words, they represent only a single scene and require retraining for every novel scene. Implicit scene-agnostic methods rely on large and deep MLPs that are conditioned on learned features. They are computationally expensive at training and rendering times. In contrast, we propose a novel hybrid representation that learns to represent multiple static and dynamic scenes during training, and renders per-scene novel views during inference. The method consists of a deformation network, explicit feature planes, and a conditional decoder. The explicit feature planes are used to represent a time-stamped view-space volume and a shared canonical volume across multiple scenes.  The conditional decoder estimates the color and density for each scene constrained on a scene-specific latent vector.  We evaluate and compare the performance of the proposed representation on static (NeRF) and dynamic (Plenoptic videos) datasets. Our results show that explicit planes combined with tiny MLPs can efficiently train multiple scenes simultaneously.</p> 
         </div>
 
         </br>
 
-        <div class="container-fluid p-3 bg-light">
-            <div class="text-center">
-                <h3>Case: Moving camera - moving object</h3>
+        <div class="container-fluid p-3 " style="text-align:center">
+            <div class="row">
+                <div class="col-sm-2">
+                    <div class="text-center">
+                        <video width="320" height="240" autoplay muted loop>
+                            <source src="videos/static/static_lego_0.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <!--<div class="col-sm-2">
+                    <div class="text-center">
+                        <video width="320" height="240" autoplay muted loop>
+                            <source src="videos/static/static_hotdog_1.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>-->
+                <div class="col-sm-2">
+                    <div class="text-center">
+                        <video width="320" height="240" autoplay muted loop>
+                            <source src="videos/static/static_chair_2.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="text-center">
+                        <video width="320" height="240" autoplay muted loop>
+                            <source src="videos/static/static_mic_3.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <div class="col-sm-2">
+                    <div class="text-center">
+                        <video width="320" height="240" autoplay muted loop>
+                            <source src="videos/dynamic synthetic/0_mutant.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="text-center">
+                        <video width="320" height="240" autoplay muted loop>
+                            <source src="videos/dynamic synthetic/1_standup.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="col-sm-2">
+                    <div class="text-center">
+                        <video width="320" height="240" autoplay muted loop>
+                            <source src="videos/dynamic synthetic/3_trex.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-start">
+                <p>Images rendered by the proposed method for NeRF (static) and D-NeRF (dynamic) datasets after training simultaneously with multiple scenes.</p>
                 </br>
             </div>
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="text-center">
-                        <img src="images/my/arti_plant2_moving_cam_my.gif" class="img-rounded" alt="No Image" width="400" height="300"> 
-                        <p>Artificial plant</p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="text-center">
-                        <img src="images/my/lily_my_moving.gif" class="img-rounded" alt="No Image" width="400" height="300"> 
-                        <p>Synthetic plant</p>
-                    </div>
-                </div>
-
-                <div class="col-sm-4">
-                    <div class="text-center">
-                        <img src="images/my/real_plant4_rgb_my_moving_camera.gif" class="img-rounded" alt="No Image" width="400" height="300"> 
-                        <p>Rhoeo plant</p>
-                    </div>
-                </div>
-            </div>
-
-            <div class="row">
-                <div class="col-sm-4">
-                    <div class="text-center">
-                        <img src="images/my/rgb_my_moving_red_flower.gif" class="img-rounded" alt="No Image" width="400" height="300"> 
-                        <p>Red flower</p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="text-center">
-                        <img src="images/my/my_rgb_moving_alagoma.gif" class="img-rounded" alt="No Image" width="400" height="300"> 
-                        <p>Aglaonema plant</p>
-                    </div>
-                </div>
-                <div class="col-sm-4">
-                    <div class="text-center">
-                        <img src="images/my/my_vassdeck.gif" class="img-rounded" alt="No Image" width="400" height="300"> 
-                        <p>Vasdeck</p>
-                    </div>
-                </div>
-                
-            </div>
         </div>
 
-        </br>
-
-        <div class="container-fluid p-3 bg-light">
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    <div class="text-center">
-                        <h3>Overview</h3>
-                        <img src="images/overview.png" class="img-rounded mx-auto" alt="No Image" width="1200" height="363">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        </br>
-
-        <div class="container-fluid p-3 bg-light">
-            <div class="row justify-content-center">
-                <div class="col-12">
-                    <div class="text-center">
-                        <h3>Additional Outputs</h3>
-                        <img src="images/additional_outputs.png" class="img-rounded" alt="No Image" width="1200" height="590">
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        </br>
-
-        <div class="container-fluid p-3 bg-light">
-            <div class="text-center">
-                <h2>Case: Comparisons</h2>
-            </div>
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="text-center">
-                        <p>Refernce View</p>
-                        <img src="images/0_arti_plant_frame1_67_GT.png" class="img-rounded" alt="No Image" width="250" height="200"> 
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="text-center">
-                        <p>Ours</p>
-                        <img src="images/1_fixed_view_my.gif" class="img-rounded" alt="No Image" width="250" height="200"> 
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="text-center">
-                        <p>Robust DyNerf</p>
-                        <img src="images/2_arti_plant2_fixed_robust.gif" class="img-rounded" alt="No Image" width="250" height="200"> 
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="text-center">
-                        <p>Non-Regid Nerf</p>
-                        <img src="images/3_fixed_view_nrnrf.gif" class="img-rounded" alt="No Image" width="250" height="200"> 
-                    </div>
-                </div>
-            </div>
+        <div class="container-fluid p-3 " style="text-align:center">
+            
+            <span id="valBox"></span>
+            <img id="slideImages" src="default-image.png" width="250" height="250">
             </br>
-
-            <div class="row">
-                <div class="col-sm-3">
-                    <div class="text-center">
-                        <img src="images/0_fixed_view_real_plant3_000286_gt_reference.png" class="img-rounded" alt="No Image" width="250" height="200"> 
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="text-center">
-                        <img src="images/1_fixed_view_real_plant3_rgb_my.gif" class="img-rounded" alt="No Image" width="250" height="200"> 
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="text-center">
-                        <img src="images/2_robust_video.gif" class="img-rounded" alt="No Image" width="250" height="200"> 
-                    </div>
-                </div>
-                <div class="col-sm-3">
-                    <div class="text-center">
-                        <img src="images/3_real_plant3_rgb_nrnrf.gif" class="img-rounded" alt="No Image" width="250" height="200"> 
-                    </div>
-                </div>
+            <div data-tip="Slide through scene dimention">
+                <input id="selector" style="width: 30%;" type="range" min="1" max="20" step="1"> 
+            </div>
+            <p>Scene Dimention</p>
+            
+            <div class="text-start">
+                <p>Visualization of multi-scene representation. The slider includes the novel views rendered by the proposed representation for a fixed camera pose with different auto-decoded latents.</p>
+                </br>
             </div>
         </div>
 
-        </br>
+        <div class="container-fluid p-3">
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="text-center">
+                        <img src="images/overview_img.png" class="img-rounded" alt="No Image" width="1250" height="430"> 
+                    </div>
+                </div>
+            </div>
 
+            <div class="text-start">
+                <p>The method consists of four components: (1) a shared canonical space representation, (2) a deformation network, (3) a view-space representation, and (4) a conditional MLP decoder.</p>
+                </br>
+            </div>
+        </div>
+
+        <div class="container-fluid p-3 " style="text-align:center">
+            <div class="row">           
+                <div class="col-sm-3">
+                    <div class="text-center">
+                        <video width="320" height="240" autoplay muted loop>
+                            <source src="videos/dynamic/coffee_martini.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+
+                <div class="col-sm-3">
+                    <div class="text-center">
+                        <video width="320" height="240" autoplay muted loop>
+                            <source src="videos/dynamic/flame_salmon.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="text-center">
+                        <video width="320" height="240" autoplay muted loop>
+                            <source src="videos/dynamic/sear_steak_test.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="text-center">
+                        <video width="320" height="240" autoplay muted loop>
+                            <source src="videos/dynamic/cook_spinach.mp4" type="video/mp4">
+                        </video>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-start">
+                <p>Novel views synthesized for Plenoptic video dataset.</p>
+                </br>
+            </div>
+        </div>
     </div>
+
+    <script>
+        $( document ).ready(function() {
+            imageElement.src = "sequence/1_test028.png";
+            $('#selector').val(1);
+        });
+
+        const imageElement = document.getElementById("slideImages");
+        /*const selectorElement = document.getElementById("selector");
+        selectorElement.onchange = () => {
+        const step = selectorElement.valueAsNumber;  
+            console.log(step);
+        for (let i = 20; i >= 1; i--) {
+            console.log(i);
+            if (i === step) {
+                console.log("sequence/" + i + "_test028.png");
+                imageElement.src = "sequence/" + i + "_test028.png";
+            }  
+        }*/
+        
+        $(document).on('input', '#selector', function() {
+            var step = $(this).val() ;
+            for (let i = 1; i <= 20; i++) {
+                if (i == step) {
+                    imageElement.src = "sequence/" + i + "_test028.png";
+                }  
+            }
+        });
+        
+        
+    </script>
 </body>
 </html>
