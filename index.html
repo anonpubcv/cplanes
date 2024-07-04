@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>dythin</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</head>
+<body>
+
+    <!--<div class="container-lg d-flex justify-content-center align-items-center"></div>-->
+    <div class="container-lg">
+        <div class="container-fluid p-3 bg-secondary text-white text-center">
+            <h2 class="fw-bolder">Dynamic view synthesis of thin structures with short-term movements</h2> 
+            <h2 class="fw-bolder">using Neural Radiance Fields from monocular videos</h2>
+        </div>
+        </br>
+        <div class="text-center">
+            <h2 class="fw-bold">Abstract</h2> 
+        </div>
+        <div class="container p-3 bg-light">
+            <p class="text-center">Learning to generate motions of thin structures such as plant leaves in dynamic view synthesis is challenging. This is because thin structures usually undergo small but fast non-rigid motions as they interact with air and wind. When given a set of RGB images or videos of a scene with moving thin structures as input, existing methods that map the scene to its corresponding canonical space for rendering novel views fail as the object movements are too subtle compared to the background. Disentangling the objects with thin parts from the background scene is also challenging when the parts show fast and rapid motions. To address these issues, we propose a Neural Radiance Field (NeRF)-based framework that accurately reconstructs thin structures such as leaves and captures their subtle, fast motions. The framework learns the geometry of a scene by mapping the dynamic images to a canonical scene in which the scene remains static. We propose a ray masking network to further decompose the canonical scene into foreground and background, thus enabling the network to focus more on foreground movements. We conducted experiments using a dataset containing thin structures such as leaves and petals, which include image sequences collected by us and one public image sequence. Experiments show superior results compared to existing methods.</p> 
+        </div>
+
+        </br>
+
+        <div class="container-fluid p-3 bg-light">
+            <div class="text-center">
+                <h3>Case: Moving camera - moving object</h3>
+                </br>
+            </div>
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="text-center">
+                        <img src="images/my/arti_plant2_moving_cam_my.gif" class="img-rounded" alt="No Image" width="400" height="300"> 
+                        <p>Artificial plant</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="text-center">
+                        <img src="images/my/lily_my_moving.gif" class="img-rounded" alt="No Image" width="400" height="300"> 
+                        <p>Synthetic plant</p>
+                    </div>
+                </div>
+
+                <div class="col-sm-4">
+                    <div class="text-center">
+                        <img src="images/my/real_plant4_rgb_my_moving_camera.gif" class="img-rounded" alt="No Image" width="400" height="300"> 
+                        <p>Rhoeo plant</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="text-center">
+                        <img src="images/my/rgb_my_moving_red_flower.gif" class="img-rounded" alt="No Image" width="400" height="300"> 
+                        <p>Red flower</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="text-center">
+                        <img src="images/my/my_rgb_moving_alagoma.gif" class="img-rounded" alt="No Image" width="400" height="300"> 
+                        <p>Aglaonema plant</p>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="text-center">
+                        <img src="images/my/my_vassdeck.gif" class="img-rounded" alt="No Image" width="400" height="300"> 
+                        <p>Vasdeck</p>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+
+        </br>
+
+        <div class="container-fluid p-3 bg-light">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="text-center">
+                        <h3>Overview</h3>
+                        <img src="images/overview.png" class="img-rounded mx-auto" alt="No Image" width="1200" height="363">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </br>
+
+        <div class="container-fluid p-3 bg-light">
+            <div class="row justify-content-center">
+                <div class="col-12">
+                    <div class="text-center">
+                        <h3>Additional Outputs</h3>
+                        <img src="images/additional_outputs.png" class="img-rounded" alt="No Image" width="1200" height="590">
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </br>
+
+        <div class="container-fluid p-3 bg-light">
+            <div class="text-center">
+                <h2>Case: Comparisons</h2>
+            </div>
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="text-center">
+                        <p>Refernce View</p>
+                        <img src="images/0_arti_plant_frame1_67_GT.png" class="img-rounded" alt="No Image" width="250" height="200"> 
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="text-center">
+                        <p>Ours</p>
+                        <img src="images/1_fixed_view_my.gif" class="img-rounded" alt="No Image" width="250" height="200"> 
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="text-center">
+                        <p>Robust DyNerf</p>
+                        <img src="images/2_arti_plant2_fixed_robust.gif" class="img-rounded" alt="No Image" width="250" height="200"> 
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="text-center">
+                        <p>Non-Regid Nerf</p>
+                        <img src="images/3_fixed_view_nrnrf.gif" class="img-rounded" alt="No Image" width="250" height="200"> 
+                    </div>
+                </div>
+            </div>
+            </br>
+
+            <div class="row">
+                <div class="col-sm-3">
+                    <div class="text-center">
+                        <img src="images/0_fixed_view_real_plant3_000286_gt_reference.png" class="img-rounded" alt="No Image" width="250" height="200"> 
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="text-center">
+                        <img src="images/1_fixed_view_real_plant3_rgb_my.gif" class="img-rounded" alt="No Image" width="250" height="200"> 
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="text-center">
+                        <img src="images/2_robust_video.gif" class="img-rounded" alt="No Image" width="250" height="200"> 
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="text-center">
+                        <img src="images/3_real_plant3_rgb_nrnrf.gif" class="img-rounded" alt="No Image" width="250" height="200"> 
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        </br>
+
+    </div>
+</body>
+</html>
